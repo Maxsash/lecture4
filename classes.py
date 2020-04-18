@@ -10,6 +10,9 @@ class Flight:
         print(f"Flight destination: {self.destination}")
         print(f"Flight duration: {self.duration}")
 
+    def delay(self, amount):
+        self.duration += amount
+
 def main():
     
     # create flight.
@@ -26,6 +29,10 @@ def main():
     # create another flight
     f2 = Flight(origin="Tokyo", destination="Shanghai", duration=185)
     f2.print_info()
+
+    #use the delay class
+    f.delay(12)
+    f.print_info()
 
 if __name__ == "__main__":
     main()
