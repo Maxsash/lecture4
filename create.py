@@ -53,7 +53,7 @@ def main():
     Flight.query.order_by(Flight.origin.desc()).all()
 
     #demonstrating SELECT * FROM flights WHERE origin!= "Paris"
-    FLight.query.filter(Flight.origin!="Paris").all()
+    Flight.query.filter(Flight.origin!="Paris").all()
 
     #demonstrating SELECT ... LIKE
     Flight.query.filter(Flight.origin.like("%a%")).all()
@@ -62,6 +62,7 @@ def main():
     Flight.query.filter(Flight.origin.in_(["Tokyo", "Paris"])).all()
 
     #demonstrating compound filter
+    #will need to import and_ & or_ 
     Flight.query.filter(and_(Flight.origin == "Paris", Flight.duration > 500)).all()
 
     #demonstrating JOIN
