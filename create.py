@@ -15,19 +15,32 @@ def main():
     db.create_all()
 
     #demonstrating INSERT
-    f=open("flights.csv")
-    reader = csv.reader(f)
-    for origin, destination, duration in reader:
-        flight = Flight(origin=origin, destination=destination, duration=duration)
-        #add an entry in the Flight class
-        db.session.add(flight)
-        print(f"Added flight from {origin} to {destination} lasting {duration} minutes.")
-    db.session.commit()
+    # f=open("flights.csv")
+    # reader = csv.reader(f)
+    # for origin, destination, duration in reader:
+    #     flight = Flight(origin=origin, destination=destination, duration=duration)
+    #     #add an entry in the Flight class
+    #     db.session.add(flight)
+    #     print(f"Added flight from {origin} to {destination} lasting {duration} minutes.")
+    # db.session.commit()
 
     #demonstrating SELECT
     flights = Flight.query.all()
     for flight in flights:
         print(f"{flight.origin} to {flight.destination}, {flight.duration} minutes.")
+
+    #demonstrating SELECT ... WHERE
+    #can use .all() or .first() as required.
+    Flight.query.filter_by(origin="Paris").first()
+
+    #demonstrating SELECT COUNT(*)
+    Flight.query.filter_by(origin="Paris").count()
+
+    #demonstrating SELECT ... WHERE when used with primary key like id
+    #in this case it will get the flight with id=2
+    Flight.query.get(2)
+
+
 
 if __name__ == "__main__":
     with app.app_context():
