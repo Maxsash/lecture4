@@ -11,7 +11,8 @@ def main():
     
     #read the json data and print
     data = res.json()
-    print(data)
+    rate = data["rates"]["EUR"]
+    print(f"1 EUR is equal to {rate} EUR")
 
 if __name__ == "__main__":
     main()
