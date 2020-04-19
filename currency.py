@@ -18,5 +18,7 @@ def main():
     rate = data["rates"]["EUR"]
     print(f"1 EUR is equal to {rate} EUR")
 
+    ## Use jsonify to return json objects when building own APIs
+
 if __name__ == "__main__":
     main()
