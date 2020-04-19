@@ -40,7 +40,16 @@ def main():
     #in this case it will get the flight with id=2
     Flight.query.get(2)
 
+    #demonstrating UPDATE
+    flight1 = Flight.query.get(6)
+    flight1.duration = 280
 
+    #demonstrating DELETE
+    flight2 = Flight.query.get(4)
+    db.session.delete(flight2)
+
+    #commit is required if write opertion is done
+    db.session.commit()
 
 if __name__ == "__main__":
     with app.app_context():
