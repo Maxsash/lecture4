@@ -48,6 +48,25 @@ def main():
     flight2 = Flight.query.get(4)
     db.session.delete(flight2)
 
+    #demonstrating SELECT ... ORDER BY
+    Flight.query.order_by(Flight.origin).all()
+    Flight.query.order_by(Flight.origin.desc()).all()
+
+    #demonstrating SELECT * FROM flights WHERE origin!= "Paris"
+    FLight.query.filter(Flight.origin!="Paris").all()
+
+    #demonstrating SELECT ... LIKE
+    Flight.query.filter(Flight.origin.like("%a%")).all()
+
+    #demonstrating SELECT ... IN
+    Flight.query.filter(Flight.origin.in_(["Tokyo", "Paris"])).all()
+
+    #demonstrating compound filter
+    Flight.query.filter(and_(Flight.origin == "Paris", Flight.duration > 500)).all()
+
+    #demonstrating JOIN
+    db.session.query(Flight, Passenger).filter(Flight.id == Passenger.flight_id).all()
+
     #commit is required if write opertion is done
     db.session.commit()
 
